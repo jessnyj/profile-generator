@@ -9,14 +9,14 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-
+var globalAnswers;
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 // email, id, company role
 
 // Create Prompt
-const teamPrompt = () => {
+const employeePrompt = () => { 
     return inquirer.prompt([
         {
             type: 'input',
@@ -37,28 +37,53 @@ const teamPrompt = () => {
             type: 'list',
             name: 'role',
             message: 'What is your title of your role in the company?',
-            choices: ['Manager, Engineer, Intern']
-        },
-        {
-            type: 'input',
-            name: 'office-num',
-            message: 'If you are manager, please list your office number.',
-        },
-        {
-            type: 'input',
-            name: 'github',
-            message: 'If you are an engineer, please list your Github',
-        },
-        {
-            type: 'input',
-            name: 'school',
-            message: 'If you are an intern please list your school.',
+            choices: ['Manager', 'Engineer', 'Intern'],
         },
     ])
         .then(answers => {
-            console.log(answers);
-        });
+            globalAnswers = answers;
+            if (answers.role === 'Manager') {
+                return inquirer.prompt([
+                    {
+                        type: 'input',
+                        name: 'officeNum',
+                        message: 'What is your office number?',
+                    }
+                ])
+            }
+            if (answers.role === 'Engineer') {
+                return inquirer.prompt([
+                    {
+                        type: 'input',
+                        name: 'github',
+                        message: 'What is your Github username?',
+                    }
+                ])
+            }
+            if (answers.role === 'Intern') {
+                return inquirer.prompt([
+                    {
+                        type: 'input',
+                        name: 'school',
+                        message: 'What school do you go to?',
+                    }
+                ])
+            }
+        
+        })
+        .then(answers2 => {
+        let fullAnswers = {
+            ...globalAnswers,
+            ...answers2
+        };
+        console.log(fullAnswers);
+        })
+
 };
+employeePrompt();
+
+// using full answers to use manger classes 
+
 
 // Render Function???
 
