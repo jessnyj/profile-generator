@@ -15,43 +15,7 @@ const render = require("./lib/htmlRenderer");
 // and to create objects for each team member (using the correct classes as blueprints!)
 // email, id, company role
 
-// Employee Class:
-class Employee {
-    constructor(name, id, email) {
-        this.name = name;
-        this.id = id;
-        this.email = email;
-        this.role = employee;
-    }
-    getName(name) {
-
-    }
-    getId() {
-
-    }
-    getEmail() {
-
-    }
-    getRole(employee) {
-        return employee;
-    }
-}
-
-class Manager extends Employee {
-    constructor(officeNumber) {
-        this.officeNumber = officeNumber;
-        this.role = manager;
-    }
-    getRole(manager) {
-        return manager;
-    }
-}
-
-class 
-
-
-
-
+// Create Prompt
 const teamPrompt = () => {
     return inquirer.prompt([
         {
@@ -95,6 +59,11 @@ const teamPrompt = () => {
             console.log(answers);
         });
 };
+
+// Render Function???
+
+
+
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
