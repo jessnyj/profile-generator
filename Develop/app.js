@@ -32,9 +32,25 @@ const teamPrompt = () => {
             message: 'What is your company id?',
         },
         {
-            type: 'input',
+            type: 'list',
             name: 'role',
             message: 'What is your title of your role in the company?',
+            choices: ['Manager, Engineer, Intern']
+        },
+        {
+            type: 'input',
+            name: 'office-num',
+            message: 'If you are manager, please list your office number.',
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: 'If you are an engineer, please list your Github',
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: 'If you are an intern please list your school.',
         },
     ]);
 // After the user has input all employees desired, call the `render` function (required
