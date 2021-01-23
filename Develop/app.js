@@ -38,13 +38,24 @@ const managerPrompt = () => {
         },
        
     ])
+    .then(answers => {
+        const teamMember = new Manager(answers);
+        teamArray.push(teamMember)
+        newTeamMember();
+    });
 
+}
 
-
-
-
-
-
+const newTeamMember = () => { 
+    return inquirer.prompt([
+        {
+            type: 'List',
+            name: 'addMember',
+            message: 'Would you like to add another team member, or finish building your team?',
+            choices: ['Add engineer', 'Add intern', 'No, my team is complete.']
+        },
+    ])
+    .then(answers => {
 
 
 
