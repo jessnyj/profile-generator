@@ -99,6 +99,31 @@ const newTeamMember = () => {
 
 };
 
+const addIntern = () => { 
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is your interns name?',
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is your interns email address?',
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: 'What school does your intern attend?',
+        },
+])
+.then(answers => {
+    const teamMember = newIntern(answers);
+    teamArray.push(teamMember);
+    newTeamMember();
+});
+
+};
 
 
 
