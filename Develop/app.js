@@ -14,7 +14,7 @@ var teamArray = [];
 
 
 // Prompt to gather info about team members
-const managerPrompt = () => { 
+const managerPrompt = () => {
     return inquirer.prompt([
         {
             type: 'input',
@@ -36,18 +36,18 @@ const managerPrompt = () => {
             name: 'officeNumber',
             message: 'What is your team managers office number?',
         },
-       
+
     ])
-    .then(answers => {
-        const teamMember = new Manager(answers);
-        teamArray.push(teamMember)
-        newTeamMember();
-    });
+        .then(answers => {
+            const teamMember = new Manager(answers);
+            teamArray.push(teamMember)
+            newTeamMember();
+        });
 
 };
 
 
-const newTeamMember = () => { 
+const newTeamMember = () => {
     return inquirer.prompt([
         {
             type: 'list',
@@ -56,50 +56,50 @@ const newTeamMember = () => {
             choices: ['Add engineer', 'Add intern', 'No, my team is complete']
         },
     ])
-    .then(answers => {
-        switch(answers.addMember) {
-            case 'Add engineer':
-                addEngineer();
-                break;
-            
-            case 'Add intern':
-                addIntern();
-                break;
-            case "No, my team is complete":
-                fullTeam();
-                break
-        }
-    });
+        .then(answers => {
+            switch (answers.addMember) {
+                case 'Add engineer':
+                    addEngineer();
+                    break;
+
+                case 'Add intern':
+                    addIntern();
+                    break;
+                case "No, my team is complete":
+                    fullTeam();
+                    break
+            }
+        });
 
 };
 
-    const addEngineer = () => { 
-        return inquirer.prompt([
-            {
-                type: 'input',
-                name: 'name',
-                message: 'What is your engineers name?',
-            },
-            {
-                type: 'input',
-                name: 'email',
-                message: 'What is your engineers email address?',
-            },
-            {
-                type: 'input',
-                name: 'github',
-                message: 'What is your engineers Github username?',
-            },
+const addEngineer = () => {
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is your engineers name?',
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is your engineers email address?',
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: 'What is your engineers Github username?',
+        },
     ])
-    .then(answers => {
-        const teamMember = newEngineer(answers);
-        teamArray.push(teamMember);
-        newTeamMember();
-    });
+        .then(answers => {
+            const teamMember = addEngineer(answers);
+            teamArray.push(teamMember);
+            newTeamMember();
+        });
 
 };
 
-const addIntern = () => { 
+const addIntern = () => {
     return inquirer.prompt([
         {
             type: 'input',
@@ -116,18 +116,42 @@ const addIntern = () => {
             name: 'school',
             message: 'What school does your intern attend?',
         },
-])
-.then(answers => {
-    const teamMember = newIntern(answers);
-    teamArray.push(teamMember);
-    newTeamMember();
-});
+    ])
+        .then(answers => {
+            const teamMember = addIntern(answers);
+            teamArray.push(teamMember);
+            newTeamMember();
+        });
 
 };
 
 
 
+// function fullTeam() {
+//     console.log("Team completed!!");
 
+//     renderMain(teamArray);
+
+// }
+
+fs.writeFile('team.html', render(teamArray), (err) =>
+    (err) ? console.error(err) : console.log('Your team is complete!!')
+);
+
+
+
+// Function to initialize app
+async function init() {
+    try {
+        const answers = await managerPrompt();
+
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+// Function call to initialize app
+init();
 
 
 
@@ -190,7 +214,7 @@ const addIntern = () => {
 //                     }
 //                 ])
 //             }
-        
+
 //         })
 //         .then(answers2 => {
 //         let fullAnswers = {
