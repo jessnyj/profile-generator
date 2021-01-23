@@ -33,7 +33,7 @@ const managerPrompt = () => {
         },
         {
             type: 'input',
-            name: 'officeNum',
+            name: 'officeNumber',
             message: 'What is your team managers office number?',
         },
        
@@ -44,24 +44,60 @@ const managerPrompt = () => {
         newTeamMember();
     });
 
-}
+};
+
 
 const newTeamMember = () => { 
     return inquirer.prompt([
         {
-            type: 'List',
+            type: 'list',
             name: 'addMember',
             message: 'Would you like to add another team member, or finish building your team?',
-            choices: ['Add engineer', 'Add intern', 'No, my team is complete.']
+            choices: ['Add engineer', 'Add intern', 'No, my team is complete']
         },
     ])
     .then(answers => {
+        switch(answers.addMember) {
+            case 'Add engineer':
+                addEngineer();
+                break;
+            
+            case 'Add intern':
+                addIntern();
+                break;
+            case "No, my team is complete":
+                fullTeam();
+                break
+        }
+    });
 
+};
 
+    const addEngineer = () => { 
+        return inquirer.prompt([
+            {
+                type: 'input',
+                name: 'name',
+                message: 'What is your engineers name?',
+            },
+            {
+                type: 'input',
+                name: 'email',
+                message: 'What is your engineers email address?',
+            },
+            {
+                type: 'input',
+                name: 'github',
+                message: 'What is your engineers Github username?',
+            },
+    ])
+    .then(answers => {
+        const teamMember = newEngineer(answers);
+        teamArray.push(teamMember);
+        newTeamMember();
+    });
 
-
-
-
+};
 
 
 
