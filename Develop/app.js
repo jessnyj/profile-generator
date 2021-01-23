@@ -1,82 +1,135 @@
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
+
 var globalAnswers;
-var newArray = [];
+var teamArray = [];
 
 
 // Prompt to gather info about team members
-const employeePrompt = () => { 
+const managerPrompt = () => { 
     return inquirer.prompt([
         {
             type: 'input',
             name: 'name',
-            message: 'What is your name?',
+            message: 'What is your team managers name?',
         },
         {
             type: 'input',
             name: 'email',
-            message: 'What is your email address?',
+            message: 'What is your team managers email address?',
         },
         {
             type: 'input',
             name: 'id',
-            message: 'What is your company id?',
+            message: 'What is your team managers company id?',
         },
         {
-            type: 'list',
-            name: 'role',
-            message: 'What is your title of your role in the company?',
-            choices: ['Manager', 'Engineer', 'Intern'],
+            type: 'input',
+            name: 'officeNum',
+            message: 'What is your team managers office number?',
         },
+       
     ])
-        .then(answers => {
-            globalAnswers = answers;
-            if (answers.role === 'Manager') {
-                return inquirer.prompt([
-                    {
-                        type: 'input',
-                        name: 'officeNum',
-                        message: 'What is your office number?',
-                    }
-                ])
-            }
-            if (answers.role === 'Engineer') {
-                return inquirer.prompt([
-                    {
-                        type: 'input',
-                        name: 'github',
-                        message: 'What is your Github username?',
-                    }
-                ])
-            }
-            if (answers.role === 'Intern') {
-                return inquirer.prompt([
-                    {
-                        type: 'input',
-                        name: 'school',
-                        message: 'What school do you go to?',
-                    }
-                ])
-            }
-        
-        })
-        .then(answers2 => {
-        let fullAnswers = {
-            ...globalAnswers,
-            ...answers2
-        };
-        console.log(fullAnswers);
-        })
 
-};
-employeePrompt();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Prompt to gather info about team members
+// const employeePrompt = () => { 
+//     return inquirer.prompt([
+//         {
+//             type: 'input',
+//             name: 'name',
+//             message: 'What is your name?',
+//         },
+//         {
+//             type: 'input',
+//             name: 'email',
+//             message: 'What is your email address?',
+//         },
+//         {
+//             type: 'input',
+//             name: 'id',
+//             message: 'What is your company id?',
+//         },
+//         {
+//             type: 'list',
+//             name: 'role',
+//             message: 'What is your title of your role in the company?',
+//             choices: ['Manager', 'Engineer', 'Intern'],
+//         },
+//     ])
+//         .then(answers => {
+//             globalAnswers = answers;
+//             if (answers.role === 'Manager') {
+//                 return inquirer.prompt([
+//                     {
+//                         type: 'input',
+//                         name: 'officeNum',
+//                         message: 'What is your office number?',
+//                     }
+//                 ])
+//             }
+//             if (answers.role === 'Engineer') {
+//                 return inquirer.prompt([
+//                     {
+//                         type: 'input',
+//                         name: 'github',
+//                         message: 'What is your Github username?',
+//                     }
+//                 ])
+//             }
+//             if (answers.role === 'Intern') {
+//                 return inquirer.prompt([
+//                     {
+//                         type: 'input',
+//                         name: 'school',
+//                         message: 'What school do you go to?',
+//                     }
+//                 ])
+//             }
+        
+//         })
+//         .then(answers2 => {
+//         let fullAnswers = {
+//             ...globalAnswers,
+//             ...answers2
+//         };
+//         console.log(fullAnswers);
+//         })
+
+// };
+// employeePrompt();
 
 // using full answers to use manger classes 
 
