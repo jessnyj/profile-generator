@@ -22,13 +22,13 @@ const managerPrompt = () => {
         },
         {
             type: 'input',
-            name: 'email',
-            message: 'What is your team managers email address?',
+            name: 'id',
+            message: 'What is your team managers company id?',
         },
         {
             type: 'input',
-            name: 'id',
-            message: 'What is your team managers company id?',
+            name: 'email',
+            message: 'What is your team managers email address?',
         },
         {
             type: 'input',
@@ -39,7 +39,7 @@ const managerPrompt = () => {
     ])
         .then(answers => {
             console.log(answers);
-            const teamMember = new Manager(answers.name, answers.email, answers.id, answers.officeNumber);
+            const teamMember = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
             teamArray.push(teamMember);
             newTeamMember();
         });
@@ -83,6 +83,11 @@ const addEngineer = () => {
         },
         {
             type: 'input',
+            name: 'id',
+            message: 'What is your engineers company id?',
+        },
+        {
+            type: 'input',
             name: 'email',
             message: 'What is your engineers email address?',
         },
@@ -94,7 +99,7 @@ const addEngineer = () => {
     ])
         .then(answers => {
             console.log(answers);
-            const teamMember = new Engineer(answers.name, answers.email, answers.github);
+            const teamMember = new Engineer(answers.name, answers.id, answers.email, answers.github);
             teamArray.push(teamMember);
             newTeamMember();
         });
@@ -111,6 +116,11 @@ const addIntern = () => {
         },
         {
             type: 'input',
+            name: 'id',
+            message: 'What is your interns company id?',
+        },
+        {
+            type: 'input',
             name: 'email',
             message: 'What is your interns email address?',
         },
@@ -121,7 +131,7 @@ const addIntern = () => {
         },
     ])
         .then(answers => {
-            const teamMember = new Intern(answers.name, answers.email, answers.school);
+            const teamMember = new Intern(answers.name, answers.id, answers.email, answers.school);
             teamArray.push(teamMember);
             newTeamMember();
         });
