@@ -16,7 +16,8 @@
 
 ## Demo
 Please check out a demo of this application here.
-[Demo](https://drive.google.com/file/d/1JHsCq0hlwEHyoYh7O2OduTIXa8kHjzez/view)
+* [Demo](https://drive.google.com/file/d/1JHsCq0hlwEHyoYh7O2OduTIXa8kHjzez/view)
+* [Tests](https://drive.google.com/file/d/1c2EleMVEDdQb6HWnxpyqQrFfjZ1Nbf1e/view)
 
 ## Technologies Used
 * javascript
