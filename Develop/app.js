@@ -12,7 +12,7 @@ const render = require("./lib/htmlRenderer");
 var teamArray = [];
 
 
-// Prompt to gather info about team members
+// Prompt to gather info about manager
 const managerPrompt = () => {
     return inquirer.prompt([
         {
@@ -46,7 +46,7 @@ const managerPrompt = () => {
 
 };
 
-
+// Allows the user to add more team members
 const newTeamMember = () => {
     return inquirer.prompt([
         {
@@ -73,6 +73,7 @@ const newTeamMember = () => {
 
 };
 
+// Function for added new engineers
 const addEngineer = () => {
     return inquirer.prompt([
         {
@@ -93,13 +94,14 @@ const addEngineer = () => {
     ])
         .then(answers => {
             console.log(answers);
-            const teamMember = addEngineer(answers.name, answers.email, answers.github);
+            const teamMember = new Engineer(answers.name, answers.email, answers.github);
             teamArray.push(teamMember);
             newTeamMember();
         });
 
 };
 
+// function for adding new interns
 const addIntern = () => {
     return inquirer.prompt([
         {
@@ -119,7 +121,7 @@ const addIntern = () => {
         },
     ])
         .then(answers => {
-            const teamMember = addIntern(answers.name, answers.email, answers.school);
+            const teamMember = new Intern(answers.name, answers.email, answers.school);
             teamArray.push(teamMember);
             newTeamMember();
         });
@@ -127,11 +129,11 @@ const addIntern = () => {
 };
 
 
-
+// Function to write team.html file 
 function fullTeam() {
     fs.writeFile(outputPath, render(teamArray), (err) =>
-    (err) ? console.error(err) : console.log('Your team is complete!!')
-);
+        (err) ? console.error(err) : console.log('Your team is complete!!')
+    );
 }
 
 
