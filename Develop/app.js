@@ -11,7 +11,6 @@ const render = require("./lib/htmlRenderer");
 
 var teamArray = [];
 
-
 // Prompt to gather info about manager
 const managerPrompt = () => {
     return inquirer.prompt([
@@ -35,7 +34,6 @@ const managerPrompt = () => {
             name: 'officeNumber',
             message: 'What is your team managers office number?',
         },
-
     ])
         .then(answers => {
             console.log(answers);
@@ -43,7 +41,6 @@ const managerPrompt = () => {
             teamArray.push(teamMember);
             newTeamMember();
         });
-
 };
 
 // Allows the user to add more team members
@@ -70,7 +67,6 @@ const newTeamMember = () => {
                     break
             }
         });
-
 };
 
 // Function for added new engineers
@@ -103,7 +99,6 @@ const addEngineer = () => {
             teamArray.push(teamMember);
             newTeamMember();
         });
-
 };
 
 // function for adding new interns
@@ -135,9 +130,7 @@ const addIntern = () => {
             teamArray.push(teamMember);
             newTeamMember();
         });
-
 };
-
 
 // Function to write team.html file 
 function fullTeam() {
@@ -146,13 +139,10 @@ function fullTeam() {
     );
 }
 
-
-
 // Function to initialize app
 async function init() {
     try {
         const answers = await managerPrompt();
-
     } catch (err) {
         console.log(err);
     }
